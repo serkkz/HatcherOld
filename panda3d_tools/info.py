@@ -89,7 +89,7 @@ class Info(bpy.types.Panel):
         
         row1 = box1.row()
         row1.label(text="Project page: ")
-        row1.operator("mesh.help_author_ru", icon="URL", text="panda3d.org.ru")  
+        row1.operator("mesh.help_page_project_ru", icon="URL", text="panda3d.org.ru")  
         
 
         row2 = box1.row()
@@ -100,7 +100,7 @@ class Info(bpy.types.Panel):
         
         row3 = box2.row()
         row3.label(text="Project page: ")
-        row3.operator("mesh.help_author_eng", icon="URL", text="panda3d.org")  
+        row3.operator("mesh.help_page_project_eng", icon="URL", text="panda3d.org")  
         
         row4 = box2.row()
         row4.label(text="Author profile: ")
