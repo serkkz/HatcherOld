@@ -51,7 +51,7 @@ class Get_Addon(bpy.types.Operator):
     
     def invoke(self, context, event):
    
-        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="https://github.com/serkkz")
+        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="https://github.com/serkkz/Hatcher")
         
         return {"FINISHED"}
         
@@ -111,8 +111,7 @@ class Info(bpy.types.Panel):
         row5 = box3.row()
         row5.label(text="Get add-on: ")
         row5.operator("mesh.get_addon", icon="URL", text="github.com")
-        
-        
+
         box4 = layout.box()
         
         row6 = box4.row()
