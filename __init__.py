@@ -14,26 +14,26 @@ import bpy
 from bpy.props import *
 from bpy.types import PropertyGroup
 
-from panda3d_tools.properties import Hatcher_mat, Hatcher_obj, Hatcher_scene, Hatcher_tex, Hatcher_list_egg_add
+from .panda3d_tools.properties import Hatcher_mat, Hatcher_obj, Hatcher_scene, Hatcher_tex, Hatcher_list_egg_add
 
-from panda3d_tools.list_hather import List_EGG_File
+from .panda3d_tools.list_hather import List_EGG_File
 
 # Импорт класса для расширения панели UV map
-from panda3d_tools.uv_add_menu import UV_unwrap_menu
+from .panda3d_tools.uv_add_menu import UV_unwrap_menu
 
 # Импорт классов для отображения интерфейса
-from panda3d_tools.setting import Setting
-from panda3d_tools.collide import Collide
-from panda3d_tools.texture import Textures
-from panda3d_tools.material import Materials
-from panda3d_tools.vertex import Vertexs
-from panda3d_tools.polygon import Polygons
-from panda3d_tools.include_egg import Include, Add_file, Del_file
-from panda3d_tools.info import Info, Help_author_RU, Help_Page_Project_RU, Help_author_ENG, Help_Page_Project_ENG, Get_Addon, Egg_Syntax, Egg_Syntax_Full
+from .panda3d_tools.setting import Setting
+from .panda3d_tools.collide import Collide
+from .panda3d_tools.texture import Textures
+from .panda3d_tools.material import Materials
+from .panda3d_tools.vertex import Vertexs
+from .panda3d_tools.polygon import Polygons
+from .panda3d_tools.include_egg import Include, Add_file, Del_file
+from .panda3d_tools.info import Info, Help_author_RU, Help_Page_Project_RU, Help_author_ENG, Help_Page_Project_ENG, Get_Addon, Egg_Syntax, Egg_Syntax_Full
 
 # Импорт классов кнопок
-from panda3d_tools.export_standart import Export_egg
-from panda3d_tools.edit_map_uv import Edit_UV
+from .panda3d_tools.export_standart import Export_egg
+from .panda3d_tools.edit_map_uv import Edit_UV
 
 def draw_item(self, context):
     layout = self.layout
@@ -42,6 +42,7 @@ def draw_item(self, context):
 def register():
 
     bpy.utils.register_class(UV_unwrap_menu)
+    
     # Добавление нового пункта меню в UV map
     bpy.types.IMAGE_HT_header.append(draw_item)
     
@@ -91,6 +92,7 @@ def register():
 def unregister():
 
     bpy.utils.unregister_class(UV_unwrap_menu)
+    
     # Удаление пункта меню в UV map
     bpy.types.IMAGE_HT_header.remove(draw_item)  
     
