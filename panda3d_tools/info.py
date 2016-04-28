@@ -31,7 +31,7 @@ class Help_Page_Project_ENG(bpy.types.Operator):
     
     def invoke(self, context, event):
    
-        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="http://panda3d.org.ru/index/8-0-serg~kkz")
+        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="http://www.panda3d.org/forums/viewtopic.php?f=2&t=18788")
         
         return {"FINISHED"}
 
