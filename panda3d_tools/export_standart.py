@@ -4,7 +4,7 @@ import io
 import os
 import subprocess
 
-from panda3d_tools.util_dir_file import dir_create_save, cor_path
+from ..panda3d_tools.util_dir_file import dir_create_save, cor_path
 
 # Коректировка пути для панды
 def corrpath(path, type=None):
