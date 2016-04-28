@@ -10,7 +10,7 @@ class Help_Page_Project_RU(bpy.types.Operator):
     
     def invoke(self, context, event):
    
-        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="http://panda3d.org.ru/index/8-0-serg~kkz")
+        bpy.ops.wm.url_open("INVOKE_DEFAULT", url="http://panda3d.org.ru/forum/3-324-1#5147")
         
         return {"FINISHED"}
 
