@@ -93,9 +93,9 @@ class Hatcher_mat(PropertyGroup):
     
     ambient_color = FloatVectorProperty(name = "", subtype = "COLOR", size = 4, min = 0.0, max = 1.0, default = (0.8,0.8,0.8,1.0), update=lambda self, context: ambient_update(self, context))
     
-    emit_color = FloatVectorProperty(name = "", subtype = "COLOR", size = 4, min = 0.0, max = 1.0, default = (0.8,0.8,0.8,1.0), update=lambda self, context: emit_update(self, context))
+    emit_color = FloatVectorProperty(name = "", subtype = "COLOR", size = 4, min = 0.0, max = 1.0, default = (0.0,0.0,0.0,1.0), update=lambda self, context: emit_update(self, context))
     
-    specular_color = FloatVectorProperty(name = "", subtype = "COLOR", size = 4, min = 0.0, max = 1.0, default = (0.8,0.8,0.8,1.0), update=lambda self, context: specular_color_update(self, context))
+    specular_color = FloatVectorProperty(name = "", subtype = "COLOR", size = 4, min = 0.0, max = 1.0, default = (0.5,0.5,0.5,1.0), update=lambda self, context: specular_color_update(self, context))
     
     shininess = IntProperty(name = "",  min = 0, max = 128, default = 12, update=lambda self, context: shininess_update(self, context))
     
