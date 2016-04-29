@@ -90,11 +90,16 @@ class Export_egg(bpy.types.Operator):
         
             for i in poly.vertices[:]:
             
-                # Получаем координаты вершины
-                vert_xyz = bpy.context.object.data.vertices[i].co 
-                
+                # Получаем данные из вершин
+                vert_data = bpy.context.object.data.vertices[i]
+
                 # Открываем вершину 
-                vertex_cache.append('  <Vertex> {} {{ {} \n'.format(id_vertex, '{0:.6f}'.format(vert_xyz[0]).rstrip('0').rstrip('.') +' '+ '{0:.6f}'.format(vert_xyz[1]).rstrip('0').rstrip('.') +' '+  '{0:.6f}'.format(vert_xyz[2]).rstrip('0').rstrip('.')))
+                vertex_cache.append('  <Vertex> {} {{ {} \n'.format(id_vertex, '{0:.6f}'.format(vert_data.co[0]).rstrip('0').rstrip('.') +' '+ '{0:.6f}'.format(vert_data.co[1]).rstrip('0').rstrip('.') +' '+  '{0:.6f}'.format(vert_data.co[2]).rstrip('0').rstrip('.')))
+
+                # Проверка еспользуется ли сглаживание 
+                if poly.use_smooth:
+                
+                    vertex_cache.append('   <Normal> {{ {} {} {} }}\n'.format('{0:.6f}'.format(vert_data.normal[0]).rstrip('0').rstrip('.'), '{0:.6f}'.format(vert_data.normal[1]).rstrip('0').rstrip('.'), '{0:.6f}'.format(vert_data.normal[2]).rstrip('0').rstrip('.')))
 
                 # Проверка статуса переменой с текстурными координатами. 
                 if uv_layer:
