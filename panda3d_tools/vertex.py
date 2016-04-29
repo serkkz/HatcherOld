@@ -28,13 +28,17 @@ class Vertexs(bpy.types.Panel):
 
                     frameUV.label(text="UV coordinates: Yes")   
                     
-                    frameUV.template_list("MESH_UL_uvmaps_vcols", "uvmaps", me, "uv_textures", me.uv_textures, "active_index", rows=1)
+                    frameUV_edit = frameUV.row()
+                    
+                    frameUV_edit.template_list("MESH_UL_uvmaps_vcols", "uvmaps", me, "uv_textures", me.uv_textures, "active_index", rows=1)
+                    
+                    col = frameUV_edit.column(align=True)
                     
                     # Добавить слой UV
-                    frameUV.operator("mesh.uv_texture_add", text="Add map")  
+                    col.operator("mesh.uv_texture_add", icon='ZOOMIN', text="")  
 
                     # Удалить слой UV
-                    frameUV.operator("mesh.uv_texture_remove", text="Remove map")
+                    col.operator("mesh.uv_texture_remove", icon='ZOOMOUT', text="")
                     
                     # Кнопка редактирования UV
                     frameUV.operator("mesh.edit_uv", text="Edit map UV")
