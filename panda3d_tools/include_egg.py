@@ -42,6 +42,7 @@ class Include(bpy.types.Panel):
             row.template_list("List_EGG_File", "", obj, "hatcher_list_egg_groop", obj.hatcher, "zones_index", rows=1)
             
             col = row.column(align=True)
+            
             # Кнопка добавления модели           
             col.operator("mesh.add_file", icon='ZOOMIN', text="")
             
