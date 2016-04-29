@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import bpy
-from bpy.props import IntProperty, CollectionProperty
 from bpy.types import Panel, UIList
 
 class Add_file(bpy.types.Operator):
@@ -8,7 +7,9 @@ class Add_file(bpy.types.Operator):
     bl_label = "Generator"
 
     def invoke(self, context, event):
+        
         bpy.context.object.hatcher_list_egg_groop.add()
+        
         return {'FINISHED'}
 
 class Del_file(bpy.types.Operator):
@@ -16,7 +17,9 @@ class Del_file(bpy.types.Operator):
     bl_label = "Generator"
 
     def invoke(self, context, event):
+        
         bpy.context.object.hatcher_list_egg_groop.remove(bpy.context.object.hatcher.zones_index)
+        
         return {'FINISHED'}
 
 class Include(bpy.types.Panel):
@@ -27,6 +30,7 @@ class Include(bpy.types.Panel):
     bl_category = 'Hatcher version 0.1'  # Название вкладки
 
     def draw(self, context):
+        
         #Общий слой для элементов
         layout = self.layout
         
