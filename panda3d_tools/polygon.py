@@ -11,6 +11,39 @@ class Polygons(bpy.types.Panel):
     bl_options = {'DEFAULT_CLOSED'}
     
     def draw(self, context):
-        layout = self.layout 
-        layout.label(text="Dummy")
+        
+        layout = self.layout
+        
+        if context.active_object.mode == 'EDIT':
+        
+            obj = context.edit_object 
+            
+            me = obj.data  
+            
+            bm = bmesh.from_edit_mesh(me) 
+            
+            # Кеш для выбраных полигонов
+            cache_face_select = []
+  
+            for f in bm.faces:  
+            
+                if f.select:  
+                
+                    cache_face_select.append(f.normal)
+
+            if cache_face_select != []:
+            
+                layout.label(text=str(cache_face_select))
+                
+            else:
+            
+                layout.label(text="No select face(s)")
+                
+            cache_face_select[:] = []
+
+            bmesh.update_edit_mesh(me, True)
+            
+        else:
+        
+            layout.label(text="Set mode EDIT")
         
