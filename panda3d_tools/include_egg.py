@@ -30,16 +30,19 @@ class Include(bpy.types.Panel):
         #Общий слой для элементов
         layout = self.layout
         
+        row = layout.row()
+
         if bpy.context.active_object.type == "MESH":
         
             obj = context.object
-            layout.template_list("List_EGG_File", "", obj, "hatcher_list_egg_groop", obj.hatcher, "zones_index")
-        
-            # Кнопка экспорта модели
-            layout.operator("mesh.add_file", text="Add file egg")
-        
-            # Кнопка экспорта модели
-            layout.operator("mesh.remove_file", text="Remove file egg")
+            row.template_list("List_EGG_File", "", obj, "hatcher_list_egg_groop", obj.hatcher, "zones_index", rows=1)
             
+            col = row.column(align=True)
+            # Кнопка добавления модели           
+            col.operator("mesh.add_file", icon='ZOOMIN', text="")
+            
+            # Кнопка удаления модели 
+            col.operator("mesh.remove_file", icon='ZOOMOUT', text="")
+ 
         else:
             layout.label(text="No select mesh")
