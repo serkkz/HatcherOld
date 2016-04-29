@@ -21,7 +21,7 @@ class Del_file(bpy.types.Operator):
 
 class Include(bpy.types.Panel):
 
-    bl_label = "Included in group object"  # Имя панели
+    bl_label = "Includes egg file"  # Имя панели
     bl_space_type = 'VIEW_3D'  # В каком окне
     bl_region_type = 'TOOLS'  # Место распаложения
     bl_category = 'Hatcher version 0.1'  # Название вкладки
