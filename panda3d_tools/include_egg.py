@@ -29,11 +29,17 @@ class Include(bpy.types.Panel):
     def draw(self, context):
         #Общий слой для элементов
         layout = self.layout
-        obj = context.object
-        layout.template_list("List_EGG_File", "", obj, "hatcher_list_egg_groop", obj.hatcher, "zones_index")
         
-        # Кнопка экспорта модели
-        layout.operator("mesh.add_file", text="Add file egg")
+        if bpy.context.active_object.type == "MESH":
         
-        # Кнопка экспорта модели
-        layout.operator("mesh.remove_file", text="Remove file egg")       
+            obj = context.object
+            layout.template_list("List_EGG_File", "", obj, "hatcher_list_egg_groop", obj.hatcher, "zones_index")
+        
+            # Кнопка экспорта модели
+            layout.operator("mesh.add_file", text="Add file egg")
+        
+            # Кнопка экспорта модели
+            layout.operator("mesh.remove_file", text="Remove file egg")
+            
+        else:
+            layout.label(text="No select mesh")
