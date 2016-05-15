@@ -58,9 +58,8 @@ class Hatcher_tex(PropertyGroup):
     value_envtype = EnumProperty(items=(
         ('MODULATE', "MODULATE", ""), ('DECAL', "DECAL", ""), ('BLEND', "BLEND", ""), ('REPLACE', "REPLACE", ""),
         ('ADD', "ADD", ""), ('BLEND_COLOR_SCALE', "BLEND_COLOR_SCALE", ""), ('MODULATE_GLOW', "MODULATE_GLOW", ""),
-        ('MODULATE_GLOSS', "MODULATE_GLOSS", ""), ('*NORMAL', "*NORMAL", ""), ('*NORMAL_HEIGHT', "*NORMAL_HEIGHT", ""),
-        ('*NORMAL', "*NORMAL", ""), ('*GLOW', "*GLOW", ""), ('*GLOSS', "*GLOSS", ""), ('*HEIGHT', "*HEIGHT", ""),
-        ('*SELECTOR', "*SELECTOR", "")), default='MODULATE')
+        ('MODULATE_GLOSS', "MODULATE_GLOSS", ""), ('NORMAL', "NORMAL", ""), ('NORMAL_HEIGHT', "NORMAL_HEIGHT", ""),
+        ('GLOW', "GLOW", ""), ('GLOSS', "GLOSS", ""), ('HEIGHT', "HEIGHT", ""),('SELECTOR', "SELECTOR", "")), default='MODULATE')
 
     value_minfilter = EnumProperty(items=(
         ('NEAREST', "NEAREST", ""), ('LINEAR', "LINEAR", ""), ('NEAREST_MIPMAP_NEAREST', "NEAREST_MIPMAP_NEAREST", ""),
