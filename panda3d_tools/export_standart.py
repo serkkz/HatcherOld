@@ -104,7 +104,7 @@ class Export_egg(bpy.types.Operator):
                 # Проверка статуса переменой с текстурными координатами. 
                 if uv_layer:
                 
-                    vertex_cache.append('   <UV> {{ {} {} }}\n'.format('{0:.6f}'.format(uv_layer[id_vertex].uv[0]).rstrip('0').rstrip('.'), '{0:.1f}'.format(uv_layer[id_vertex].uv[1]).rstrip('0').rstrip('.')))         
+                    vertex_cache.append('   <UV> {{ {} {} }}\n'.format('{0:.6f}'.format(uv_layer[id_vertex].uv[0]).rstrip('0').rstrip('.'), '{0:.6f}'.format(uv_layer[id_vertex].uv[1]).rstrip('0').rstrip('.')))         
                        
                     for uv in bpy.context.object.data.uv_layers:
 
