@@ -122,6 +122,18 @@ class Hatcher_obj(PropertyGroup):
     
     zones_index = IntProperty()
     
+    # Переменная для хранения маски коллизии
+    collide_name = StringProperty()
+
+    # Переменная для хранения маски коллизии
+    collide_mask = StringProperty( default = '1048575' )
+    
+    # Переменная для хранения маски, с какой маской происходит коллизия
+    from_collide_mask = StringProperty( default = '1048575' )
+    
+    # Переменная для хранения маски, от какой маски происходит коллизия
+    into_collide_mask = StringProperty( default = '1048575' )
+
 # Xранит пользовательские даные для сцены
 class Hatcher_scene(PropertyGroup):
     # Переменная для хранения адреса установленный панды
