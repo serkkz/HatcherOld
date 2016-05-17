@@ -14,16 +14,21 @@ class Collide(bpy.types.Panel):
         layout = self.layout 
 
         if bpy.context.active_object.type == "MESH":
-            # Вывод листа с осями верха для модели
-            layout.prop(bpy.context.active_object.hatcher, "collide_type", text="Collide type")
+        
+            layout.prop(bpy.context.active_object.hatcher, "collide_mask", text="Mask")
+            layout.prop(bpy.context.active_object.hatcher, "from_collide_mask", text="From mask")
+            layout.prop(bpy.context.active_object.hatcher, "into_collide_mask", text="Into mask")
+        
+            layout.prop(bpy.context.active_object.hatcher, "collide_type", text="Type")
             
             if bpy.context.active_object.hatcher.collide_type != 'None':
                 
-                layout.prop(bpy.context.active_object.hatcher, "collide_flag_1", text="Flags 1")
-                layout.prop(bpy.context.active_object.hatcher, "collide_flag_2", text="Flags 2")
-                layout.prop(bpy.context.active_object.hatcher, "collide_flag_3", text="Flags 3")
-                layout.prop(bpy.context.active_object.hatcher, "collide_flag_4", text="Flags 4")
-                layout.prop(bpy.context.active_object.hatcher, "collide_flag_5", text="Flags 5")
-                
+                layout.prop(bpy.context.active_object.hatcher, "collide_name", text="Name")
+                layout.prop(bpy.context.active_object.hatcher, "collide_flag_1", text="Flag 1")
+                layout.prop(bpy.context.active_object.hatcher, "collide_flag_2", text="Flag 2")
+                layout.prop(bpy.context.active_object.hatcher, "collide_flag_3", text="Flag 3")
+                layout.prop(bpy.context.active_object.hatcher, "collide_flag_4", text="Flag 4")
+                layout.prop(bpy.context.active_object.hatcher, "collide_flag_5", text="Flag 5")
+
         else:
             layout.label(text="no select mesh")
