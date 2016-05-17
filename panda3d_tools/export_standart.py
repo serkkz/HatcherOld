@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import bpy
+import bmesh
 import io
 import os
 import subprocess
@@ -84,7 +85,7 @@ class Export_egg(bpy.types.Operator):
         vertex_cache.append(' <VertexPool> {} {{\n'.format(bpy.context.object.name))
 
         id_vertex = 0
-        
+
         # Перебираем полигоны активного объкта
         for poly in bpy.context.object.data.polygons:
         
@@ -96,7 +97,7 @@ class Export_egg(bpy.types.Operator):
                 # Открываем вершину 
                 vertex_cache.append('  <Vertex> {} {{ {} \n'.format(id_vertex, '{0:.6f}'.format(vert_data.co[0]).rstrip('0').rstrip('.') +' '+ '{0:.6f}'.format(vert_data.co[1]).rstrip('0').rstrip('.') +' '+  '{0:.6f}'.format(vert_data.co[2]).rstrip('0').rstrip('.')))
 
-                # Проверка еспользуется ли сглаживание 
+                # Проверка используется ли сглаживание 
                 if poly.use_smooth:
                 
                     vertex_cache.append('   <Normal> {{ {} {} {} }}\n'.format('{0:.6f}'.format(vert_data.normal[0]).rstrip('0').rstrip('.'), '{0:.6f}'.format(vert_data.normal[1]).rstrip('0').rstrip('.'), '{0:.6f}'.format(vert_data.normal[2]).rstrip('0').rstrip('.')))
@@ -104,10 +105,16 @@ class Export_egg(bpy.types.Operator):
                 # Проверка статуса переменой с текстурными координатами. 
                 if uv_layer:
                 
+                    # Активный слой записываем без имени UV
+                    
+                    print ('   <UV> {{ {} {} }}'.format('{0:.6f}'.format(uv_layer[id_vertex].uv[0]).rstrip('0').rstrip('.'), '{0:.1f}'.format(uv_layer[id_vertex].uv[1]).rstrip('0').rstrip('.'))) 
+                    
                     vertex_cache.append('   <UV> {{ {} {} }}\n'.format('{0:.6f}'.format(uv_layer[id_vertex].uv[0]).rstrip('0').rstrip('.'), '{0:.6f}'.format(uv_layer[id_vertex].uv[1]).rstrip('0').rstrip('.')))         
-                       
+
+                    # Проходим по не активным слоям
                     for uv in bpy.context.object.data.uv_layers:
 
+                        # Если имя не равно активному слою, то записываем.
                         if uv.name != bpy.context.object.data.uv_layers.active.name:
 
                             vertex_cache.append('   <UV> {} {{ {} {} }}\n'.format(uv.name,'{0:.6f}'.format(uv.data[id_vertex].uv[0]).rstrip('0').rstrip('.'), '{0:.6f}'.format(uv.data[id_vertex].uv[1]).rstrip('0').rstrip('.')))
@@ -280,7 +287,13 @@ class Export_egg(bpy.types.Operator):
         # Открываем группу объекта 
         egg.write('<Group>  {} {{\n'.format(bpy.context.object.name))
         
+        egg.write(' <Scalar> collide-mask {{ {} }}\n'.format(bpy.context.active_object.hatcher.collide_mask))
+        egg.write(' <Scalar> from-collide-mask {{ {} }}\n'.format(bpy.context.active_object.hatcher.from_collide_mask))
+        egg.write(' <Scalar> into-collide-mask {{ {} }}\n'.format(bpy.context.active_object.hatcher.into_collide_mask))
+
         list_flags = []
+
+        context.object.hatcher.collide_type
         
         if context.object.hatcher.collide_type != "None":
         
@@ -304,13 +317,16 @@ class Export_egg(bpy.types.Operator):
             
                 list_flags.append(context.object.hatcher.collide_flag_5)
             
+            # Проверка есть ли записанные флаги в списке
             if list_flags:
-
-                egg.write(' <Collide> {{ {} {} }}\n'.format(context.object.hatcher.collide_type, ','.join(list_flags).replace(",", " ")))
                 
+                # Записываем с флагами
+                egg.write(' <Collide> {} {{ {} {} }}\n'.format(bpy.context.active_object.hatcher.collide_name, context.object.hatcher.collide_type, ','.join(list_flags).replace(",", " ")))
+
             else:
             
-                egg.write(' <Collide> {{ {} }}\n'.format(context.object.hatcher.collide_type))
+                # Записываем без флагами
+                egg.write(' <Collide> {} {{ {} }}\n'.format(bpy.context.active_object.hatcher.collide_name, context.object.hatcher.collide_type))
 
         # Записываем все вершины в виртуальный файл
         for data_vert in vertex_cache:
