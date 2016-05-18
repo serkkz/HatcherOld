@@ -69,7 +69,7 @@ class Export_egg(bpy.types.Operator):
         egg.write('<CoordinateSystem> { ' + bpy.data.objects[context.object.name].hatcher.coordinatesystem + ' }\n\n')
             
         # Запись о версии hatcher
-        egg.write('<Comment> { "Exporter Hatcher version 0.1" }\n\n')
+        egg.write('<Comment> { "Exporter Hatcher version 0.3" }\n\n')
 
         # Кеш для группы вершин которые состовляют один полигон.
         vert = []
