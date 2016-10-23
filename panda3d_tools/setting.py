@@ -10,7 +10,7 @@ class Setting(bpy.types.Panel):
     bl_label = "Setting export"  # Имя панели
     bl_space_type = 'VIEW_3D'  # В каком окне
     bl_region_type = 'TOOLS'  # Место распаложения
-    bl_category = 'Hatcher version 0.1'  # Название вкладки
+    bl_category = 'Hatcher version 0.3'  # Название вкладки
 
     def draw(self, context):
         #Общий слой для элементов
