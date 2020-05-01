@@ -1,4 +1,4 @@
-#Hatcher version 0.3
+Hatcher version 0.3
 Egg exporter for the Blender No test < 2.7
 
 Exporting:
